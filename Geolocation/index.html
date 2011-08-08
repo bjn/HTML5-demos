@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+	<script src="../scripts/modernizr-2.0.6.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+	<script>
+		function supports_geolocation() {
+		  return !!navigator.geolocation;
+		}
+
+		function success(position) {
+			var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			  var myOptions = {
+			    zoom: 15,
+			    center: latlng,
+			    mapTypeControl: false,
+			    navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+			    mapTypeId: google.maps.MapTypeId.ROADMAP
+			  };
+			  var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+
+			 var marker = new google.maps.Marker({
+			      position: latlng, 
+			      map: map, 
+			      title: "You are here!"
+			  });
+			
+		}
+		
+		function failure(msg) {
+			alert("Sorry, could not find your position: "+msg);
+		}
+
+		if (supports_geolocation())
+			navigator.geolocation.getCurrentPosition(success, failure);	
+		else
+			alert("Your browser does not support geolocation.");
+			
+	</script>
+</head>
+<body>
+	<header>
+		<h1>Geolocation example</h1>
+	</header>
+	<section id="mapcanvas" style="width: 400px; height: 500px">
+	
+	</section>
+</body>
