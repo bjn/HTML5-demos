@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Local storage demo</title>
+	<!--[if lt IE 9]>
+	  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	  <![endif]-->
+	<script src="../scripts/modernizr-2.0.6.js"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+	<script>
+		function supports_localstorage() {
+		  return Modernizr.localstorage;
+		}
+
+		function persistData() {
+			localStorage["someDate"] = document.getElementById("someDate").value;
+		}
+		
+		function loadData() {
+			document.getElementById("someDate").value = localStorage["someDate"];
+		}
+		
+		</script>
+</head>
+<body onload="loadData()">
+	<header>
+		<h1>Local storage example</h1>
+	</header>
+	<section>
+		<p>
+			Change the date and then close and open the file again and it will show the date you picked before closing the browser/tab.
+		</p>
+		<input type="date" id="someDate" onchange="persistData()" />
+	</section>
+</body>
+</html>
