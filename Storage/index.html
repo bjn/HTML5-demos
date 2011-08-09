@@ -15,11 +15,15 @@
 		}
 
 		function persistData() {
-			localStorage["someDate"] = document.getElementById("someDate").value;
+			if (supports_localstorage()) {
+				localStorage["someDate"] = document.getElementById("someDate").value;				
+			}
 		}
 		
 		function loadData() {
-			document.getElementById("someDate").value = localStorage["someDate"];
+			if (supports_localstorage()) {
+				document.getElementById("someDate").value = localStorage["someDate"];
+			}
 		}
 		
 		</script>
